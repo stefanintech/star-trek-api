@@ -77,6 +77,3 @@ app.get('/api/:alienName', (request,response) => {
     }
 })
 
-app.listen(process.env.PORT || PORT, () => {
-    console.log('Sever running.')
-})

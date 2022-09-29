@@ -77,3 +77,6 @@ app.get('/api/:alienName', (request,response) => {
     }
 })
 
+app.listen(process.env.PORT || PORT, () => {
+    console.log(`Running on ${PORT}.`)
+})

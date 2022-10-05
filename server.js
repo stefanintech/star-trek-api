@@ -3,20 +3,19 @@ const app = express()
 const cors = require('cors')
 const PORT = 8000
 const MongoClient = require('mongodb').MongoClient
-const dbConnectionStr = 'mongodb+srv://fieldguide:fieldguide@cluster0.gthkqr5.mongodb.net/?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://fieldguide:fieldguide@cluster0.gthkqr5.mongodb.net/?retryWrites=true&w=majority'
+
 app.use(cors())
 app.use(express.json())
-
-
 
 // const aliens = {
 //     'humans': {
 //         'speciesName' : 'Humans',
-//             'homeworld': 'Earth',
-//             'features':'Rounded ears, hair on head and face (sometimes)',
-//             'interestingFact': 'Founded the United Federation of Planets after first contact with the Vulcans' ,
-//             'notableExamples' : "James T. Kirk, Zephram Cochran, Abraham Lincoln",
-//             'image': 'https://static.wikia.nocookie.net/aliens/images/6/68/The_City_on_the_Edge_of_Forever.jpg'
+//         'homeworld': 'Earth',
+//         'features':'Rounded ears, hair on head and face (sometimes)',
+//         'interestingFact': 'Founded the United Federation of Planets after first contact with the Vulcans' ,
+//         'notableExamples' : "James T. Kirk, Zephram Cochran, Abraham Lincoln",
+//         'image': 'https://static.wikia.nocookie.net/aliens/images/6/68/The_City_on_the_Edge_of_Forever.jpg'
 //     },
 //     'vulcans': {
 //         'speciesName' : 'Vulcans',
@@ -68,31 +67,30 @@ app.use(express.json())
 //     }
 // }
 
-
-
-MongoClient.connect(dbConnectionStr)
+MongoClient.connect(connectionString)
     .then(client => {
-        console.log(`Connected to Database`)
-        const db = client.db('startrekapi')
-        const infoCollection = db.collection('alieninfo')
+        console.log('Connected to Database')
+        const db = client.db('star-trek-api')
+        const infoCollection = db.collection('alien-info')
 
 
-    app.get('/', (request,response) => {
-        response.sendFile(__dirname + '/index.html')
+    app.get('/', (request, response) => {
+    response.sendFile(__dirname + '/index.html')
     })
 
-    app.get('/api/:alienName', (request,response) => {
-        const aliensNames = request.params.alienName.toLowerCase()
-        infoCollection.find({name: aliensNames}).toArray()
+    app.get('/api/:alienName', (request, response) => {
+    const aliensName = request.params.alienName.toLowerCase()
+        infoCollection.find({name: aliensName}).toArray()
         .then(results => {
             console.log(results)
             response.json(results[0])
         })
-        .catch(error => console.log(error))
+        .catch(error => console.error(error))
     })
+
 })
-.catch(error => console.log(error))
+.catch(error => console.error(error))
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Running on ${PORT}.`)
+    console.log('Server is running.')
 })

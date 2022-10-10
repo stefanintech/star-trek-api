@@ -1,4 +1,4 @@
-# Star Trek Field Guide API ⚽️
+# <a target="_blank" href="https://star-trek-aliens-api.onrender.com/">Star Trek Field Guide API</a> 🚀
 
 For the live site, visit: https://startrekfieldguide.netlify.app/
 

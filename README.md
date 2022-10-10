@@ -1,6 +1,6 @@
 # Star Trek Field Guide API ⚽️
 
-This API allows one to search for aliens in the Star Trek Universe.
+For the live site, visit: https://startrekfieldguide.netlify.app/
 
 ## Description
 

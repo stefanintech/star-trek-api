@@ -24,7 +24,7 @@ MongoClient.connect(connectionString)
         infoCollection.find({name: aliensName}).toArray()
         .then(results => {
             console.log(results)
-            response.json(results[0])
+            response.json(results)
         })
         .catch(error => console.error(error))
     })
